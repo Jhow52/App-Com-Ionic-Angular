@@ -1,0 +1,23 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-title>Login</ion-title>
+  </ion-toolbar>
+</ion-header> 
+<ion-content [fullscreen]="true">
+  <br>
+  <br>
+  <ion-item>
+    <ion-label>Login:</ion-label>
+    <ion-input [(ngModel)]="usuario.login" placeholder="Digite seu login"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>Senha:</ion-label>
+    <ion-input [(ngModel)]="usuario.senha" placeholder="Digite seu login"></ion-input>
+  </ion-item>
+  <ion-button expand="block" (click)="avancar()">Entrar</ion-button>
+</ion-content>
+<ion-footer>
+    <ion-toolbar>
+      <ion-title size="large">@Feito por Jhonata Vicentin</ion-title>
+    </ion-toolbar>
+</ion-footer>

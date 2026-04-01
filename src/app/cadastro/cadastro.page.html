@@ -1,0 +1,33 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="tertiary">
+    <ion-title>Cadastro</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content [fullscreen]="true">
+  <br>
+  <div>
+    <ion-item>
+      <ion-label>Nome:</ion-label>
+      <ion-input [(ngModel)]="cadastro.nome" placeholder="Insira o nome do produto"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Tipo:</ion-label>
+      <ion-input [(ngModel)]="cadastro.tipo" placeholder="F para fornecedor ou C para cliente"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Endereço:</ion-label>
+      <ion-input [(ngModel)]="cadastro.endereco" placeholder="Insira o endereço"></ion-input>
+    </ion-item>
+  </div>
+  <div>
+    <ion-button expand="block" (click)="cadastrar()">Cadastrar Usuário</ion-button>
+    <ion-button expand="block" (click)="limparFormulario()">Limpar Campos</ion-button>
+  </div>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Listagem de Cadastro</ion-card-title>
+    </ion-card-header>
+    <ion-list ></ion-list>
+  </ion-card>
+</ion-content>
