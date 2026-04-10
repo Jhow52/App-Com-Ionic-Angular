@@ -1,13 +1,45 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>pagar</ion-title>
+  <ion-toolbar color="secondary">
+    <ion-title>Pagar</ion-title>
   </ion-toolbar>
 </ion-header>
-
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">pagar</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <br>
+  <div>
+    <ion-item>
+      <ion-label>Fornecedor:</ion-label>
+      <ion-input [(ngModel)]="pagamento.fornecedor" placeholder="Nome do fornecedor"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Valor:</ion-label>
+      <ion-input [(ngModel)]="pagamento.valor" placeholder="Insira o valor"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Pagamento:</ion-label>
+      <ion-input type="date" [(ngModel)]="pagamento.pagamentos" placeholder="Insira o pagamento"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Vencimento:</ion-label>
+      <ion-input type="date" [(ngModel)]="pagamento.vencimento" placeholder="Insira o dia do vencimento"></ion-input>
+    </ion-item>
+  </div>
+  <div>
+    <ion-button expand="block" (click)="cadastroPagamento()">Cadastrar</ion-button>
+    <ion-button expand="block" (click)="limparFormulario()">Limpar Campos</ion-button>
+  </div>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Pagamento</ion-card-title>
+    </ion-card-header>
+    <ion-list *ngIf="listaPagamento.length > 0">
+      <ion-item *ngFor="let item of listaPagamento; let i = index">
+        <ion-label>{{i+1}}- Fornecedor: {{item.fornecedor}}</ion-label>
+        <ion-label>Valor: R${{item.valor}}</ion-label>
+        <ion-label>Pagamento: {{item.pagamento}}</ion-label>
+        <ion-label>Vencimento: {{item.vencimento}}</ion-label>
+        <ion-button color="danger" slot="end" (click)="excluir(i)">Excluir</ion-button>
+      </ion-item>
+    </ion-list>
+  </ion-card>
+  <ion-button expand="full" (click)="voltarMenu()">Voltar</ion-button>
 </ion-content>

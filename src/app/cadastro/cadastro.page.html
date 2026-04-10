@@ -8,26 +8,33 @@
   <div>
     <ion-item>
       <ion-label>Nome:</ion-label>
-      <ion-input [(ngModel)]="cadastro.nome" placeholder="Insira o nome do produto"></ion-input>
+      <ion-input [(ngModel)]="cadastro.nome" placeholder="Insira o nome da empresa" required></ion-input>
     </ion-item>
     <ion-item>
       <ion-label>Tipo:</ion-label>
-      <ion-input [(ngModel)]="cadastro.tipo" placeholder="F para fornecedor ou C para cliente"></ion-input>
+      <ion-input [(ngModel)]="cadastro.tipo" placeholder="F para fornecedor ou C para cliente" required></ion-input>
     </ion-item>
     <ion-item>
       <ion-label>Endereço:</ion-label>
-      <ion-input [(ngModel)]="cadastro.endereco" placeholder="Insira o endereço"></ion-input>
+      <ion-input [(ngModel)]="cadastro.endereco" placeholder="Insira o endereço" required></ion-input>
     </ion-item>
   </div>
   <div>
-    <ion-button expand="block" (click)="cadastrar()">Cadastrar Usuário</ion-button>
+    <ion-button expand="block" (click)="cadastrar()">Cadastrar</ion-button>
     <ion-button expand="block" (click)="limparFormulario()">Limpar Campos</ion-button>
   </div>
-
   <ion-card>
     <ion-card-header>
       <ion-card-title>Listagem de Cadastro</ion-card-title>
     </ion-card-header>
-    <ion-list ></ion-list>
+    <ion-list *ngIf="listaCadastro.length > 0">
+      <ion-item *ngFor="let item of listaCadastro; let i = index">
+        <ion-label>{{i+1}}- Empresa: {{item.nome}}</ion-label>
+        <ion-label>Tipo: {{item.tipo}}</ion-label>
+        <p>Endereço: {{item.endereco}}</p>
+        <ion-button color="danger" slot="end" (click)="excluir(i)">Excluir</ion-button>
+      </ion-item>
+    </ion-list>
   </ion-card>
+  <ion-button expand="full" (click)="voltarMenu()">Voltar</ion-button>
 </ion-content>

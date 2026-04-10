@@ -15,6 +15,8 @@ interface Cadastro{
 })
 export class CadastroPage implements OnInit {
 
+  constructor(private router: Router) {}
+
   cadastro = {
     nome: '',
     tipo: '',
@@ -28,11 +30,12 @@ export class CadastroPage implements OnInit {
     const tipo = this.cadastro.tipo.trim();
     const endereco = this.cadastro.endereco.trim();
 
-    if(!nome || !tipo || !endereco){
+    if(!nome ||!tipo ||!endereco){
       return;
     }
 
     this.listaCadastro.unshift({nome, tipo, endereco});
+    this.limparFormulario();
   }
   
   excluir(index: number){
@@ -49,7 +52,9 @@ export class CadastroPage implements OnInit {
     }
   }
 
-  constructor(private router: Router) {}
+  voltarMenu(){
+    this.router.navigate(['/menu'])
+  }
 
   ngOnInit() {
   }

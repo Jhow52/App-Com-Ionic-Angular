@@ -1,4 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
+interface Receber{
+  fornecedor: string;
+  vencimento: string;
+  pagamentos: string;
+  valor: number;
+}
 
 @Component({
   selector: 'app-receber',
@@ -8,9 +16,52 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ReceberPage implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) {}
 
-  ngOnInit() {
+  receber = {
+    fornecedor: "",
+    vencimento: "",
+    pagamentos: "",
+    valor: null,
   }
 
+  listaRecebimento: any[] = []; 
+
+  cadastroRecebimento(){
+    const vencimento = this.receber.vencimento;
+    const pagamento = this.receber.pagamentos;
+    const valor = this.receber.valor;
+    const fornecedor = this.receber.fornecedor;
+
+    if(!fornecedor || !valor || !vencimento || !pagamento){
+      return;
+    }
+    const dataVencimento = new Date(vencimento + 'T00:00:00');
+    const dataPagamento = new Date(pagamento + 'T00:00:00');
+    this.listaRecebimento.unshift({vencimento: dataVencimento.toLocaleDateString('pt-BR'),
+      pagamento: dataPagamento.toLocaleDateString('pt-BR'),
+      valor, fornecedor});
+    this.limparFormulario();
+  }
+
+  excluir(index: number){
+    if(index >= 0 && this.listaRecebimento.length){
+      this.listaRecebimento.splice(index,1);
+    }
+  }
+
+  limparFormulario(){
+    this.receber = {
+      fornecedor: "",
+      vencimento: "",
+      pagamentos: "",
+      valor: null,
+    }
+  }
+
+  voltarMenu(){
+    this.router.navigate(['/menu'])
+  }
+  ngOnInit() {
+  }
 }

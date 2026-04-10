@@ -20,7 +20,7 @@ export class LoginPage implements OnInit {
   }
 
   usuariosCadastrados: Usuario[] = [
-    {login: 'jhow', senha: 1234}
+    
   ];
 
   constructor(private router: Router) {}

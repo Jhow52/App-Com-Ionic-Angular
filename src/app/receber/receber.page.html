@@ -1,13 +1,46 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>receber</ion-title>
+  <ion-toolbar color="primary">
+    <ion-title>Receber</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">receber</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <br>
+  <div>
+    <ion-item>
+      <ion-label>Fornecedor:</ion-label>
+      <ion-input [(ngModel)]="receber.fornecedor" placeholder="Nome do fornecedor"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Valor:</ion-label>
+      <ion-input [(ngModel)]="receber.valor" placeholder="Insira o valor"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Pagamento:</ion-label>
+      <ion-input type="date" [(ngModel)]="receber.pagamentos" placeholder="Insira o pagamento"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Vencimento:</ion-label>
+      <ion-input type="date" [(ngModel)]="receber.vencimento" placeholder="Insira o dia do vencimento"></ion-input>
+    </ion-item>
+  </div>
+  <div>
+    <ion-button expand="block" (click)="cadastroRecebimento()">Cadastrar</ion-button>
+    <ion-button expand="block" (click)="limparFormulario()">Limpar Campos</ion-button>
+  </div>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Recebimento</ion-card-title>
+    </ion-card-header>
+    <ion-list *ngIf="listaRecebimento.length > 0">
+      <ion-item *ngFor="let item of listaRecebimento; let i = index">
+        <ion-label>{{i+1}}- Fornecedor: {{item.fornecedor}}</ion-label>
+        <ion-label>Valor: R${{item.valor}}</ion-label>
+        <ion-label>Pagamento: {{item.pagamento}}</ion-label>
+        <ion-label>Vencimento: {{item.vencimento}}</ion-label>
+        <ion-button color="danger" slot="end" (click)="excluir(i)">Excluir</ion-button>
+      </ion-item>
+    </ion-list>
+  </ion-card>
+  <ion-button expand="full" (click)="voltarMenu()">Voltar</ion-button>
 </ion-content>
